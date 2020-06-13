@@ -7,22 +7,22 @@ int data;
 struct Node *left;
 struct Node*right;
 };
-Node* newNode(int val)
+Node* newNode(int value)
 {
 
     Node* temp = new Node;
-    temp->data = val;
+    temp->data = value;
     temp->left=NULL;
     temp->right=NULL;
     return temp;
 }
-Node* buildTree(string str){
-if(str.length()==0||str[0]=='null')
+Node* createTree(string s){
+if(s.length()==0||s[0]=='null')
     return NULL;
 vector<string>ip;
-istringstream iss(str);
-for(string str;iss>>str;)
-    ip.push_back(str);
+istringstream iss(s);
+for(string s;iss>>s;)
+    ip.push_back(s);
 Node* root=newNode(stoi(ip[0]));
 queue<Node*>queue;
 queue.push(root);
@@ -47,7 +47,7 @@ while(!queue.empty()&&i<ip.size()){
 }
 return root;}
 
-struct Node *findLCA(struct Node* root, int n1, int n2)
+struct Node *LCA(struct Node* root, int n1, int n2)
 {
 
     if (root == NULL) return NULL;
@@ -56,13 +56,13 @@ struct Node *findLCA(struct Node* root, int n1, int n2)
         return root;
 
 
-    Node *left_lca  = findLCA(root->left, n1, n2);
-    Node *right_lca = findLCA(root->right, n1, n2);
+    Node *leftlca  = LCA(root->left, n1, n2);
+    Node *rightlca = LCA(root->right, n1, n2);
 
-    if (left_lca && right_lca)  return root;
+    if (leftlca && rightlca)  return root;
 
 
-    return (left_lca != NULL)? left_lca: right_lca;
+    return (leftlca != NULL)? leftlca: rightlca;
 }
 
 
@@ -71,10 +71,10 @@ int main(){
 
     string s;
     getline(cin,s);
-    Node* root=buildTree(s);
+    Node* root=createTree(s);
     int p,q;
     cin>>p>>q;
-    cout<<findLCA(root, p, q)->data;
+    cout<<LCA(root, p, q)->data;
 
 
 
