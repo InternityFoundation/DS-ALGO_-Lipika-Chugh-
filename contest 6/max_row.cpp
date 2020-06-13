@@ -16,13 +16,13 @@ Node* newNode(int val)
     temp->right=NULL;
     return temp;
 }
-Node* buildTree(string str){
-if(str.length()==0||str[0]=='null')
+Node* createTree(string s){
+if(s.length()==0||s[0]=='null')
     return NULL;
 vector<string>ip;
-istringstream iss(str);
-for(string str;iss>>str;)
-    ip.push_back(str);
+istringstream iss(s);
+for(string s;iss>>s;)
+    ip.push_back(s);
 Node* root=newNode(stoi(ip[0]));
 queue<Node*>queue;
 queue.push(root);
@@ -47,29 +47,29 @@ while(!queue.empty()&&i<ip.size()){
 }
 return root;}
 
-void helper(vector<int>& res, Node* root, int d)
+void check(vector<int>& result, Node* root, int d)
 {
     if (!root)
         return;
 
    
-    if (d == res.size())
-        res.push_back(root->data);
+    if (d == result.size())
+        result.push_back(root->data);
 
     else
 
-        res[d] = max(res[d], root->data);
+        result[d] = max(result[d], root->data);
 
-    helper(res, root->left, d + 1);
-    helper(res, root->right, d + 1);
+    check(result, root->left, d + 1);
+    check(result, root->right, d + 1);
 }
 
 
-vector<int> largestValues(Node* root)
+vector<int> largestVal(Node* root)
 {
-    vector<int> res;
-    helper(res, root, 0);
-    return res;
+    vector<int> result;
+    check(result, root, 0);
+    return result;
 }
 
 
@@ -78,10 +78,10 @@ int main(){
 
     string s;
     getline(cin,s);
-    Node* root=buildTree(s);
-    vector<int> res = largestValues(root);
-    for (int i = 0; i < res.size(); i++)
-        cout << res[i] << " ";
+    Node* root=createTree(s);
+    vector<int> result = largestVal(root);
+    for (int i = 0; i < result.size(); i++)
+        cout << result[i] << " ";
 
 
 
