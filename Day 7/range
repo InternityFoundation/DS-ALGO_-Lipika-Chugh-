@@ -1,0 +1,42 @@
+Link-https://practice.geeksforgeeks.org/problems/elements-in-the-range/0
+
+Problem statement-An array containing positive elements is given. ‘A’ and ‘B’ are two numbers defining a range. Write a function to check if the array contains all elements in the given range.
+
+#include <iostream>
+using namespace std;
+void range(int arr[],int n,int A,int B){
+    int c=0;
+    for(int i=0;i<n;i++){
+        if(arr[i]>=A && arr[i]<=B){
+            c++;
+        }}
+        if(c==(B-A+1)){
+            cout<<"Yes"<<endl;
+        }
+        else{
+            cout<<"No"<<endl;
+        }
+    
+    
+}
+
+int main() {
+    int t;
+    cin>>t;
+    while(t--){
+        int n;
+        cin>>n;
+        int A;
+        cin>>A;
+        int B;
+        cin>>B;
+        int arr[n];
+        for(int i=0;i<n;i++){
+            cin>>arr[i];
+        }
+        range(arr,n,A,B);
+    }
+	//code
+	return 0;
+}
+
